@@ -1,0 +1,550 @@
+/* ARQUIVO: style.css */
+
+/* ------------------- */
+/* RESET E VARIÁVEIS   */
+/* ------------------- */
+:root {
+    --primary-color: #5A005A;
+    --dark-gray: #222222;
+    --light-gray: #f4f4f4;
+    --white: #FFFFFF;
+    --font-title: 'Playfair Display', serif;
+    --font-body: 'Inter', sans-serif;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: var(--font-body);
+    color: var(--dark-gray);
+    line-height: 1.6;
+    background-color: var(--white);
+}
+
+/* NOVO: Impede a rolagem do corpo quando o menu está aberto */
+body.menu-open {
+    overflow: hidden;
+}
+
+
+img {
+    max-width: 100%;
+    display: block;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+ul {
+    list-style: none;
+}
+
+h1, h2, h3 {
+    font-family: var(--font-title);
+    color: var(--dark-gray);
+    line-height: 1.2;
+}
+
+h1 { font-size: 2.5rem; }
+h2 { font-size: 2rem; }
+p.subtitle { font-size: 1.1rem; color: #555; max-width: 700px; margin: 1rem auto 0; }
+
+.container {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.text-center {
+    text-align: center;
+}
+
+/* ------------------- */
+/* COMPONENTES GLOBAIS */
+/* ------------------- */
+.btn {
+    display: inline-block;
+    padding: 12px 28px;
+    border-radius: 5px;
+    font-weight: 500;
+    transition: background-color 0.3s, transform 0.3s;
+}
+
+.btn-primary {
+    background-color: var(--primary-color);
+    color: var(--white);
+}
+
+.btn-primary:hover {
+    background-color: #4a004a;
+    transform: translateY(-2px);
+}
+
+.btn-secondary {
+    background-color: transparent;
+    color: var(--primary-color);
+    border: 1px solid var(--primary-color);
+}
+
+.btn-secondary:hover {
+    background-color: var(--primary-color);
+    color: var(--white);
+}
+
+/* ------------------- */
+/* CABEÇALHO E NAVEGAÇÃO */
+/* ------------------- */
+.header {
+    background-color: var(--white);
+    padding: 20px 0;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+}
+
+.header .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    display: block;
+}
+
+.logo img {
+    height: 40px; 
+    width: auto;
+}
+
+
+/* Navegação Mobile (Menu Hambúrguer) */
+.nav-links {
+    display: flex; 
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 2rem;
+    position: fixed;
+    top: 0;
+    right: -100%; 
+    width: 80%;
+    max-width: 320px;
+    height: 100vh;
+    background-color: var(--dark-gray);
+    transition: right 0.4s ease-in-out;
+    z-index: 1000; 
+}
+
+.nav-links.active {
+    right: 0; 
+}
+
+.nav-links li a {
+    color: var(--white);
+    font-size: 1.5rem;
+    font-weight: 500;
+}
+
+.nav-links li a.active, .nav-links li a:hover {
+    color: var(--primary-color);
+}
+
+.menu-icons {
+    cursor: pointer;
+    z-index: 1001;
+    position: relative; /* Necessário para o posicionamento dos ícones */
+    width: 24px; /* Largura do ícone */
+    height: 24px; /* Altura do ícone */
+}
+
+/* CORREÇÃO: Ícones posicionados absolutamente para sobreposição */
+.menu-icons img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
+}
+
+.icon-hamburger {
+    opacity: 1;
+    transform: scale(1);
+}
+
+.icon-close {
+    opacity: 0;
+    transform: scale(0.7);
+}
+
+/* CORREÇÃO: Controla a troca dos ícones via classe no body */
+body.menu-open .icon-hamburger {
+    opacity: 0;
+    transform: scale(0.7);
+}
+
+body.menu-open .icon-close {
+    opacity: 1;
+    transform: scale(1);
+}
+
+
+/* ------------------- */
+/* SEÇÕES - PÁGINA INICIAL */
+/* ------------------- */
+.hero {
+    padding: 60px 0;
+    background-color: var(--light-gray);
+}
+
+.hero .grid-2 {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 40px;
+    align-items: center;
+}
+
+.hero-text h1 {
+    margin-bottom: 1rem;
+}
+
+.hero-text p {
+    margin-bottom: 2rem;
+    font-size: 1.1rem;
+}
+
+.hero-image img {
+    border-radius: 8px;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+}
+
+.portfolio-preview, .cta-final, .page-content {
+    padding: 80px 0;
+}
+
+.portfolio-preview h2, .cta-final h2 {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.portfolio-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 30px;
+    margin-bottom: 40px;
+}
+
+.portfolio-item img {
+    border-radius: 5px;
+    margin-bottom: 1rem;
+}
+
+.portfolio-item h3 {
+    margin-bottom: 0.5rem;
+}
+
+.cta-final {
+    background-color: var(--primary-color);
+}
+
+.cta-final h2, .cta-final p {
+    color: var(--white);
+}
+
+.cta-final p {
+    margin-bottom: 2rem;
+}
+
+/* ------------------- */
+/* PÁGINA DE SERVIÇOS */
+/* ------------------- */
+.services-intro {
+    text-align: center;
+    padding-bottom: 40px;
+}
+
+/* ===== INÍCIO DO CÓDIGO A SER ADICIONADO ===== */
+
+/* Estilização da seção de pilares com fundo violeta */
+.services-pillars {
+    background-color: var(--primary-color);
+    color: var(--white); /* Define a cor padrão do texto (parágrafos) para branco */
+}
+
+.services-pillars .pillar h2 {
+    color: var(--white); /* Sobrescreve a cor padrão dos títulos h2 para branco */
+}
+
+/* ===== FIM DO CÓDIGO A SER ADICIONADO ===== */
+
+.services-pillars .container {
+    display: grid;
+    grid-template-columns: 1fr; 
+    gap: 40px;
+}
+
+.pillar {
+    text-align: center;
+    padding: 20px;
+}
+
+.pillar-icon {
+    width: 60px;
+    height: 60px;
+    margin: 0 auto 1rem;
+}
+
+.pillar h2 {
+    margin-bottom: 1rem; 
+}
+
+.cta-secondary {
+    padding-top: 60px;
+}
+
+.cta-secondary h2 {
+    margin-bottom: 1.5rem; 
+}/* ------------------- */
+/* PÁGINA DE PORTFÓLIO */
+/* ------------------- */
+.portfolio-full h1, .portfolio-full .subtitle {
+    text-align: center;
+}
+.portfolio-full .subtitle {
+    margin-bottom: 40px;
+}
+
+.portfolio-grid-full {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 20px;
+}
+
+.portfolio-card {
+    display: block;
+    border-radius: 8px;
+    overflow: hidden;
+    position: relative;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.portfolio-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+}
+
+.portfolio-card img {
+    width: 100%;
+    height: 250px;
+    object-fit: cover;
+}
+
+.card-content {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 20px;
+    background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
+    color: var(--white);
+}
+
+.card-content h3 {
+    color: var(--white);
+    margin-bottom: 5px;
+}
+
+/* ------------------- */
+/* PÁGINA DE CONTATO */
+/* ------------------- */
+.contact-options {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 30px;
+    margin-top: 40px;
+}
+
+.contact-card {
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 40px 20px;
+    transition: border-color 0.3s, transform 0.3s;
+}
+
+.contact-card:hover {
+    border-color: var(--primary-color);
+    transform: translateY(-5px);
+}
+
+.contact-card img {
+    width: 50px;
+    height: 50px;
+    margin: 0 auto 1rem;
+}
+
+.contact-card h2 {
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+}
+
+/* ------------------- */
+/* RODAPÉ E WHATSAPP */
+/* ------------------- */
+.footer {
+    background-color: var(--dark-gray);
+    color: var(--light-gray);
+    text-align: center;
+    padding: 20px 0;
+}
+
+.footer-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+}
+
+.footer-social a {
+    display: inline-block;
+    transition: opacity 0.3s;
+}
+
+.footer-social a:hover {
+    opacity: 0.7;
+}
+
+.footer-social img {
+    height: 24px;
+    width: 24px;
+}
+
+/* Ajuste para telas maiores */
+@media (min-width: 768px) {
+    .footer-content {
+        flex-direction: row;
+        justify-content: space-between;
+    }
+}
+
+.whatsapp-float {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background-color: #25D366;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+    z-index: 999;
+    transition: transform 0.3s, opacity 0.4s, visibility 0.4s;
+    opacity: 1;
+    visibility: visible;
+}
+
+.whatsapp-float:hover {
+    transform: scale(1.1);
+}
+
+.whatsapp-float img {
+    width: 30px;
+}
+
+/* ------------------- */
+/* RESPONSIVIDADE */
+/* ------------------- */
+
+/* Tablets (e telas maiores) */
+@media (min-width: 768px) {
+    h1 { font-size: 3rem; }
+    h2 { font-size: 2.2rem; }
+
+    /* NOVO: Garante que o body não fique travado em telas maiores se redimensionado */
+    body.menu-open {
+        overflow: auto;
+    }
+
+    .menu-icons {
+        display: none; 
+    }
+
+    .nav-links {
+        display: flex; 
+        position: static;
+        flex-direction: row;
+        height: auto;
+        width: auto;
+        background-color: transparent;
+    }
+
+    .nav-links li a {
+        color: var(--dark-gray);
+        font-size: 1rem;
+        padding: 5px 15px;
+    }
+
+    .nav-links li a:hover {
+        color: var(--primary-color);
+        background: none;
+    }
+    .nav-links li a.active {
+        color: var(--primary-color);
+        font-weight: 700;
+    }
+
+    .hero .grid-2 {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .portfolio-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+    
+    .services-pillars .container {
+        grid-template-columns: repeat(3, 1fr); 
+    }
+    
+    .portfolio-grid-full {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .contact-options {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+/* Desktops (telas grandes) */
+@media (min-width: 1024px) {
+    h1 { font-size: 3.5rem; }
+
+    .portfolio-grid-full {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+/* 1. Altera a cor do botão APENAS na seção final (cta-final) */
+.cta-final .btn-primary {
+    background-color: var(--dark-gray); /* Cor de fundo cinza escuro */
+    color: var(--white); /* Texto branco */
+    border: 2px solid var(--dark-gray); /* Borda para dar mais peso */
+}
+
+/* 2. Adiciona um efeito hover para este botão específico */
+.cta-final .btn-primary:hover {
+    background-color: #3a3a3a; /* Cinza um pouco mais claro no hover */
+    border-color: #3a3a3a;
+}
+
+/* 3. Aumenta o tamanho do ícone do Instagram no rodapé */
+.footer-social img {
+    height: 28px; /* Tamanho ajustado para melhor visibilidade */
+    width: 28px;
+}
