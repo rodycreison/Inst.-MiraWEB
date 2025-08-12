@@ -23,7 +23,6 @@ body {
     color: var(--dark-gray);
     line-height: 1.6;
     background-color: var(--white);
-    overflow-x: hidden; /* CORREÇÃO: Impede a barra de rolagem horizontal */
 }
 
 /* Impede a rolagem do corpo quando o menu mobile está aberto */
@@ -120,6 +119,7 @@ p.subtitle { font-size: 1.1rem; color: #555; max-width: 700px; margin: 1rem auto
     width: auto;
 }
 
+/* Navegação Mobile (Menu Hambúrguer) */
 .nav-links {
     display: flex; 
     flex-direction: column;
@@ -176,6 +176,7 @@ p.subtitle { font-size: 1.1rem; color: #555; max-width: 700px; margin: 1rem auto
     transform: scale(0.7);
 }
 
+/* Controla a troca dos ícones via classe no body */
 body.menu-open .icon-hamburger {
     opacity: 0;
     transform: scale(0.7);
@@ -187,13 +188,8 @@ body.menu-open .icon-close {
 }
 
 /* ------------------- */
-/* CONTEÚDO PRINCIPAL  */
+/* SEÇÕES - PÁGINA INICIAL */
 /* ------------------- */
-.page-content {
-    padding: 80px 0;
-}
-
-/* SEÇÃO HERO (PÁGINA INICIAL) */
 .hero {
     padding: 60px 0;
     background-color: var(--light-gray);
@@ -206,20 +202,25 @@ body.menu-open .icon-close {
     align-items: center;
 }
 
-.hero-text h1 { margin-bottom: 1rem; }
-.hero-text p { margin-bottom: 2rem; font-size: 1.1rem; }
+.hero-text h1 {
+    margin-bottom: 1rem;
+}
+
+.hero-text p {
+    margin-bottom: 2rem;
+    font-size: 1.1rem;
+}
 
 .hero-image img {
     border-radius: 8px;
     box-shadow: 0 10px 20px rgba(0,0,0,0.1);
 }
 
-/* SEÇÃO PREVIEW PORTFÓLIO (PÁGINA INICIAL) */
-.portfolio-preview {
+.portfolio-preview, .cta-final, .page-content {
     padding: 80px 0;
 }
 
-.portfolio-preview h2 {
+.portfolio-preview h2, .cta-final h2 {
     text-align: center;
     margin-bottom: 40px;
 }
@@ -236,7 +237,32 @@ body.menu-open .icon-close {
     margin-bottom: 1rem;
 }
 
-.portfolio-item h3 { margin-bottom: 0.5rem; }
+.portfolio-item h3 {
+    margin-bottom: 0.5rem;
+}
+
+.cta-final {
+    background-color: var(--primary-color);
+}
+
+.cta-final h2, .cta-final p {
+    color: var(--white);
+}
+
+.cta-final p {
+    margin-bottom: 2rem;
+}
+
+.cta-final .btn-primary {
+    background-color: var(--dark-gray);
+    color: var(--white);
+    border: 2px solid var(--dark-gray);
+}
+
+.cta-final .btn-primary:hover {
+    background-color: #3a3a3a;
+    border-color: #3a3a3a;
+}
 
 /* ------------------- */
 /* PÁGINA DE SERVIÇOS */
@@ -249,17 +275,17 @@ body.menu-open .icon-close {
 .services-pillars {
     background-color: var(--primary-color);
     color: var(--white);
-    padding: 60px 0; /* Adicionado padding para consistência */
+    padding: 60px 0;
+}
+
+.services-pillars .pillar h2 {
+    color: var(--white);
 }
 
 .services-pillars .container {
     display: grid;
     grid-template-columns: 1fr; 
     gap: 40px;
-}
-
-.services-pillars .pillar h2 {
-    color: var(--white);
 }
 
 .pillar {
@@ -273,9 +299,17 @@ body.menu-open .icon-close {
     margin: 0 auto 1rem;
 }
 
-.pillar h2 { margin-bottom: 1rem; }
-.cta-secondary { padding-top: 60px; }
-.cta-secondary h2 { margin-bottom: 1.5rem; }
+.pillar h2 {
+    margin-bottom: 1rem; 
+}
+
+.cta-secondary {
+    padding-top: 60px;
+}
+
+.cta-secondary h2 {
+    margin-bottom: 1.5rem; 
+}
 
 /* ------------------- */
 /* PÁGINA DE PORTFÓLIO */
@@ -283,6 +317,7 @@ body.menu-open .icon-close {
 .portfolio-full h1, .portfolio-full .subtitle {
     text-align: center;
 }
+
 .portfolio-full .subtitle {
     margin-bottom: 40px;
 }
@@ -362,34 +397,6 @@ body.menu-open .icon-close {
 }
 
 /* ------------------- */
-/* SEÇÕES DE CTA      */
-/* ------------------- */
-.cta-final {
-    padding: 80px 0;
-    background-color: var(--primary-color);
-}
-
-.cta-final h2, .cta-final p {
-    color: var(--white);
-}
-
-.cta-final p {
-    margin-bottom: 2rem;
-}
-
-/* Estilo específico para o botão na CTA final */
-.cta-final .btn-primary {
-    background-color: var(--dark-gray);
-    color: var(--white);
-    border: 2px solid var(--dark-gray);
-}
-
-.cta-final .btn-primary:hover {
-    background-color: #3a3a3a;
-    border-color: #3a3a3a;
-}
-
-/* ------------------- */
 /* RODAPÉ E WHATSAPP */
 /* ------------------- */
 .footer {
@@ -447,7 +454,7 @@ body.menu-open .icon-close {
 }
 
 /* ------------------- */
-/* MEDIA QUERIES RESPONSIVAS */
+/* RESPONSIVIDADE */
 /* ------------------- */
 
 /* Tablets (e telas maiores) */
@@ -455,7 +462,7 @@ body.menu-open .icon-close {
     h1 { font-size: 3rem; }
     h2 { font-size: 2.2rem; }
 
-    /* Garante que o body não fique travado em telas maiores se redimensionado com menu aberto */
+    /* Garante que o body não fique travado em telas maiores se redimensionado */
     body.menu-open {
         overflow: auto;
     }
@@ -471,7 +478,6 @@ body.menu-open .icon-close {
         height: auto;
         width: auto;
         background-color: transparent;
-        gap: 0; /* Resetar o gap do mobile */
     }
 
     .nav-links li a {
@@ -484,17 +490,36 @@ body.menu-open .icon-close {
         color: var(--primary-color);
         background: none;
     }
+
     .nav-links li a.active {
         color: var(--primary-color);
         font-weight: 700;
     }
 
-    .hero .grid-2 { grid-template-columns: 1fr 1fr; }
-    .portfolio-grid { grid-template-columns: repeat(3, 1fr); }
-    .services-pillars .container { grid-template-columns: repeat(3, 1fr); }
-    .portfolio-grid-full { grid-template-columns: repeat(2, 1fr); }
-    .contact-options { grid-template-columns: repeat(2, 1fr); }
-    .footer-content { flex-direction: row; justify-content: space-between; }
+    .hero .grid-2 {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .portfolio-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+    
+    .services-pillars .container {
+        grid-template-columns: repeat(3, 1fr); 
+    }
+    
+    .portfolio-grid-full {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .contact-options {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .footer-content {
+        flex-direction: row;
+        justify-content: space-between;
+    }
 }
 
 /* Desktops (telas grandes) */
